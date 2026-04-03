@@ -1,0 +1,1461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakriti Vishwakarma — Data Analyst & Content Creator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Oswald', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: '#5423E7',
+                        accent: '#FF3366',
+                        dark: '#0f172a',
+                    },
+                    keyframes: {
+                        fadeIn: { from: { opacity: '0' }, to: { opacity: '1' } },
+                        slideIn: { from: { opacity: '0', transform: 'translateY(30px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
+                        blurIn: { from: { opacity: '0', filter: 'blur(12px)' }, to: { opacity: '1', filter: 'blur(0)' } },
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-15px)' },
+                        },
+                        countUp: { from: { opacity: '0', transform: 'scale(0.5)' }, to: { opacity: '1', transform: 'scale(1)' } },
+                        slideLeft: { from: { opacity: '0', transform: 'translateX(-40px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+                        slideRight: { from: { opacity: '0', transform: 'translateX(40px)' }, to: { opacity: '1', transform: 'translateX(0)' } },
+                    },
+                    animation: {
+                        fadeIn: 'fadeIn 0.8s ease-out both',
+                        slideIn: 'slideIn 0.8s cubic-bezier(0.16,1,0.3,1) both',
+                        blurIn: 'blurIn 1s ease-out both',
+                        blob: 'blob 7s infinite',
+                        float: 'float 6s ease-in-out infinite',
+                        countUp: 'countUp 0.6s ease-out both',
+                        slideLeft: 'slideLeft 0.8s cubic-bezier(0.16,1,0.3,1) both',
+                        slideRight: 'slideRight 0.8s cubic-bezier(0.16,1,0.3,1) both',
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background: #0f172a; color: #fff; }
+
+        .text-gradient {
+            background: linear-gradient(to right, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-accent {
+            background: linear-gradient(to right, #FF3366, #FF6B6B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .text-gradient-mixed {
+            background: linear-gradient(135deg, #5423E7, #FF3366, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .glass-card:hover {
+            background: rgba(255,255,255,0.08);
+            border-color: rgba(255,255,255,0.15);
+        }
+
+        .skill-tag {
+            background: rgba(84,35,231,0.15);
+            border: 1px solid rgba(84,35,231,0.3);
+            color: #c4b5fd;
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+        .skill-tag:hover {
+            background: rgba(84,35,231,0.3);
+            border-color: rgba(84,35,231,0.6);
+            transform: translateY(-2px);
+        }
+        .skill-tag-accent {
+            background: rgba(255,51,102,0.12);
+            border: 1px solid rgba(255,51,102,0.3);
+            color: #fda4af;
+        }
+        .skill-tag-accent:hover {
+            background: rgba(255,51,102,0.25);
+            border-color: rgba(255,51,102,0.6);
+        }
+        .skill-tag-green {
+            background: rgba(34,197,94,0.12);
+            border: 1px solid rgba(34,197,94,0.3);
+            color: #86efac;
+        }
+        .skill-tag-green:hover {
+            background: rgba(34,197,94,0.25);
+            border-color: rgba(34,197,94,0.6);
+        }
+        .skill-tag-amber {
+            background: rgba(245,158,11,0.12);
+            border: 1px solid rgba(245,158,11,0.3);
+            color: #fcd34d;
+        }
+        .skill-tag-amber:hover {
+            background: rgba(245,158,11,0.25);
+            border-color: rgba(245,158,11,0.6);
+        }
+
+        .tab-btn {
+            padding: 10px 24px;
+            border-radius: 9999px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: transparent;
+            color: #94a3b8;
+        }
+        .tab-btn.active {
+            background: #5423E7;
+            border-color: #5423E7;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(84,35,231,0.4);
+        }
+        .tab-btn:hover:not(.active) {
+            border-color: rgba(255,255,255,0.3);
+            color: #fff;
+        }
+
+        .project-card { transition: all 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .project-card:hover { transform: translateY(-8px); }
+        .project-card:hover .project-img { transform: scale(1.08); }
+        .project-img { transition: transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(84,35,231,0.15), rgba(255,51,102,0.08));
+            border: 1px solid rgba(84,35,231,0.2);
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 23px;
+            top: 48px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, #5423E7, transparent);
+        }
+
+        .nav-link {
+            position: relative;
+            color: #94a3b8;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #5423E7;
+            transition: width 0.3s;
+        }
+        .nav-link:hover { color: #fff; }
+        .nav-link:hover::after { width: 100%; }
+
+        .blob-bg {
+            position: absolute;
+            border-radius: 9999px;
+            filter: blur(80px);
+            opacity: 0.3;
+        }
+
+        .thumbnail-showcase {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+        }
+        .thumbnail-showcase::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15,23,42,0.8) 0%, transparent 50%);
+        }
+
+        @media (max-width: 768px) {
+            .hero-title { font-size: 2.5rem !important; }
+            .blob-bg { display: none; }
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16,1,0.3,1);
+        }
+        .scroll-reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            padding: 16px 28px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 9999;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="overflow-x-hidden">
+
+    <!-- Toast -->
+    <div id="toast" class="toast bg-green-500/20 border border-green-500/40 text-green-300 backdrop-blur-xl"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-dark/70 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex items-center justify-between h-16">
+            <a href="#hero" class="font-display font-700 text-xl tracking-tight">
+                <span class="text-gradient">PV</span><span class="text-white/60">.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#about" class="nav-link text-sm">About</a>
+                <a href="#skills" class="nav-link text-sm">Skills</a>
+                <a href="#portfolio" class="nav-link text-sm">Portfolio</a>
+                <a href="#experience" class="nav-link text-sm">Experience</a>
+                <a href="#education" class="nav-link text-sm">Education</a>
+                <a href="#contact" class="nav-link text-sm">Contact</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="#contact" class="hidden sm:inline-flex items-center gap-2 bg-brand hover:bg-brand/80 text-white text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full transition-all duration-300 hover:shadow-[0_0_20px_rgba(84,35,231,0.4)]">
+                    Hire Me
+                    <iconify-icon icon="lucide:arrow-right" width="14"></iconify-icon>
+                </a>
+                <button id="mobileMenuBtn" class="md:hidden text-white/70 hover:text-white">
+                    <iconify-icon icon="lucide:menu" width="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-dark/95 backdrop-blur-xl border-t border-white/5 px-6 py-6 space-y-4">
+            <a href="#about" class="block text-white/70 hover:text-white text-sm py-2">About</a>
+            <a href="#skills" class="block text-white/70 hover:text-white text-sm py-2">Skills</a>
+            <a href="#portfolio" class="block text-white/70 hover:text-white text-sm py-2">Portfolio</a>
+            <a href="#experience" class="block text-white/70 hover:text-white text-sm py-2">Experience</a>
+            <a href="#education" class="block text-white/70 hover:text-white text-sm py-2">Education</a>
+            <a href="#contact" class="block text-white/70 hover:text-white text-sm py-2">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
+        <!-- Blobs -->
+        <div class="blob-bg w-96 h-96 bg-brand top-20 -left-40 animate-blob"></div>
+        <div class="blob-bg w-72 h-72 bg-accent top-1/2 right-0 animate-blob" style="animation-delay:2s"></div>
+        <div class="blob-bg w-64 h-64 bg-purple-500 bottom-20 left-1/3 animate-blob" style="animation-delay:4s"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 pt-24 pb-16 grid lg:grid-cols-12 gap-8 lg:gap-12 items-center w-full">
+            <!-- Left -->
+            <div class="lg:col-span-6 space-y-8">
+                <div class="animate-fadeIn" style="animation-delay:0.1s">
+                    <span class="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs font-bold uppercase tracking-widest text-white/60">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        Available for opportunities
+                    </span>
+                </div>
+                <h1 class="hero-title font-display font-700 text-5xl lg:text-7xl xl:text-8xl tracking-tighter uppercase leading-[0.85] animate-slideIn" style="animation-delay:0.2s">
+                    <span class="block text-white">Prakriti</span>
+                    <span class="block text-gradient">Vishwakarma</span>
+                </h1>
+                <div class="animate-slideIn" style="animation-delay:0.4s">
+                    <p class="text-lg lg:text-xl text-white/50 font-light leading-relaxed max-w-lg">
+                        Data Analyst <span class="text-white/30">·</span> Content Creator <span class="text-white/30">·</span> AI-Powered Storyteller <span class="text-white/30">·</span> Thumbnail Designer
+                    </p>
+                </div>
+                <div class="flex flex-wrap gap-4 animate-slideIn" style="animation-delay:0.6s">
+                    <a href="#portfolio" class="inline-flex items-center gap-2 bg-brand hover:bg-brand/80 text-white text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-300 hover:shadow-[0_0_30px_rgba(84,35,231,0.5)]">
+                        View My Work
+                        <iconify-icon icon="lucide:arrow-down-right" width="16"></iconify-icon>
+                    </a>
+                    <a href="#contact" class="inline-flex items-center gap-2 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-white/20 text-white text-xs font-bold uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-300">
+                        Get In Touch
+                    </a>
+                </div>
+                <!-- Social -->
+                <div class="flex items-center gap-4 animate-fadeIn" style="animation-delay:0.8s">
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                        <iconify-icon icon="lucide:linkedin" width="16"></iconify-icon>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                        <iconify-icon icon="lucide:github" width="16"></iconify-icon>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                        <iconify-icon icon="lucide:youtube" width="16"></iconify-icon>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                        <iconify-icon icon="lucide:instagram" width="16"></iconify-icon>
+                    </a>
+                    <a href="mailto:prakritivish09@gmail.com" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+                        <iconify-icon icon="lucide:mail" width="16"></iconify-icon>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right - Photo + Stats -->
+            <div class="lg:col-span-6 relative animate-blurIn" style="animation-delay:0.4s">
+                <div class="relative" style="perspective:800px">
+                    <div class="rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl" style="transform:rotateX(2deg) rotateY(-5deg)">
+                        <img src="https://picsum.photos/seed/prakriti-portrait/600/700.jpg" alt="Prakriti Vishwakarma" class="w-full h-[500px] lg:h-[600px] object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6">
+                            <p class="text-xs font-bold uppercase tracking-widest text-brand mb-1">Based in</p>
+                            <p class="text-white font-display text-xl font-600 tracking-tight">Virar, Maharashtra, India</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Floating Stats -->
+                <div class="absolute -left-6 top-20 stat-card rounded-2xl px-5 py-4 animate-float backdrop-blur-xl" style="animation-delay:0s">
+                    <p class="text-2xl font-display font-700 text-white">99%+</p>
+                    <p class="text-xs text-white/50 font-medium">Data Accuracy</p>
+                </div>
+                <div class="absolute -right-4 bottom-40 stat-card rounded-2xl px-5 py-4 animate-float backdrop-blur-xl" style="animation-delay:1.5s">
+                    <p class="text-2xl font-display font-700 text-gradient-accent">6+</p>
+                    <p class="text-xs text-white/50 font-medium">Dashboards Built</p>
+                </div>
+                <div class="absolute right-8 top-8 stat-card rounded-2xl px-5 py-4 animate-float backdrop-blur-xl" style="animation-delay:3s">
+                    <p class="text-2xl font-display font-700 text-green-400">AI</p>
+                    <p class="text-xs text-white/50 font-medium">Powered Creator</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fadeIn" style="animation-delay:1.2s">
+            <span class="text-[10px] uppercase tracking-widest text-white/30">Scroll</span>
+            <div class="w-5 h-8 rounded-full border border-white/20 flex items-start justify-center p-1">
+                <div class="w-1 h-2 bg-white/40 rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="relative py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="scroll-reveal grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+                <div class="lg:col-span-5">
+                    <div class="relative">
+                        <div class="rounded-3xl overflow-hidden border border-white/10">
+                            <img src="https://picsum.photos/seed/prakriti-about/500/600.jpg" alt="About Prakriti" class="w-full h-[400px] lg:h-[500px] object-cover">
+                        </div>
+                        <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-brand/20 rounded-3xl -z-10"></div>
+                        <div class="absolute -top-6 -left-6 w-24 h-24 bg-accent/20 rounded-3xl -z-10"></div>
+                    </div>
+                </div>
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="text-xs font-bold uppercase tracking-widest text-brand">About Me</span>
+                    <h2 class="font-display font-700 text-4xl lg:text-5xl tracking-tighter uppercase leading-[0.95]">
+                        Data Meets<br><span class="text-gradient">Creative Storytelling</span>
+                    </h2>
+                    <p class="text-white/50 font-light leading-relaxed text-lg">
+                        I'm a results-driven Data Analytics professional with a creative edge — I don't just crunch numbers, I turn them into compelling stories. With hands-on experience in building interactive Power BI dashboards, managing large datasets, and coordinating cross-functional projects, I bring analytical rigor to everything I do.
+                    </p>
+                    <p class="text-white/50 font-light leading-relaxed">
+                        Beyond data, I'm a passionate Content Creator who leverages AI tools like ChatGPT, Midjourney, and Runway ML to produce engaging scripts, eye-catching thumbnails, and scroll-stopping videos. I bridge the gap between data insights and creative content — making complex information accessible and visually compelling.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 pt-4">
+                        <div class="glass-card rounded-2xl p-5 transition-all duration-300">
+                            <iconify-icon icon="lucide:database" width="24" class="text-brand mb-3"></iconify-icon>
+                            <p class="text-white font-semibold text-sm">Data Analytics</p>
+                            <p class="text-white/40 text-xs mt-1">Power BI, SQL, Python</p>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 transition-all duration-300">
+                            <iconify-icon icon="lucide:video" width="24" class="text-accent mb-3"></iconify-icon>
+                            <p class="text-white font-semibold text-sm">Content Creation</p>
+                            <p class="text-white/40 text-xs mt-1">YouTube, Reels, Shorts</p>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 transition-all duration-300">
+                            <iconify-icon icon="lucide:sparkles" width="24" class="text-green-400 mb-3"></iconify-icon>
+                            <p class="text-white font-semibold text-sm">AI-Powered</p>
+                            <p class="text-white/40 text-xs mt-1">ChatGPT, Midjourney, Runway</p>
+                        </div>
+                        <div class="glass-card rounded-2xl p-5 transition-all duration-300">
+                            <iconify-icon icon="lucide:image" width="24" class="text-amber-400 mb-3"></iconify-icon>
+                            <p class="text-white font-semibold text-sm">Thumbnail Design</p>
+                            <p class="text-white/40 text-xs mt-1">Canva, Photoshop, Figma</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="relative py-24 lg:py-32">
+        <div class="blob-bg w-80 h-80 bg-brand top-0 right-0 animate-blob" style="animation-delay:1s"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand">What I Do</span>
+                <h2 class="font-display font-700 text-4xl lg:text-6xl tracking-tighter uppercase mt-4">
+                    Skills & <span class="text-gradient">Expertise</span>
+                </h2>
+                <p class="text-white/40 font-light mt-4 max-w-2xl mx-auto">A unique blend of data analytics, creative content production, AI tools, and visual design that sets me apart.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="scroll-reveal flex flex-wrap justify-center gap-3 mb-12">
+                <button class="tab-btn active" data-tab="data" onclick="switchTab('data')">
+                    <iconify-icon icon="lucide:database" width="14" class="mr-1"></iconify-icon> Data Analytics
+                </button>
+                <button class="tab-btn" data-tab="content" onclick="switchTab('content')">
+                    <iconify-icon icon="lucide:video" width="14" class="mr-1"></iconify-icon> Content Creator
+                </button>
+                <button class="tab-btn" data-tab="ai" onclick="switchTab('ai')">
+                    <iconify-icon icon="lucide:sparkles" width="14" class="mr-1"></iconify-icon> AI Content
+                </button>
+                <button class="tab-btn" data-tab="thumbnail" onclick="switchTab('thumbnail')">
+                    <iconify-icon icon="lucide:image" width="14" class="mr-1"></iconify-icon> Thumbnail Design
+                </button>
+            </div>
+
+            <!-- Tab Content: Data Analytics -->
+            <div id="tab-data" class="tab-content space-y-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:bar-chart-3" width="24" class="text-brand"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Data Visualization</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Building interactive dashboards with Power BI, Tableau, and Python visualization libraries.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Power BI</span>
+                            <span class="skill-tag">Tableau</span>
+                            <span class="skill-tag">Matplotlib</span>
+                            <span class="skill-tag">Seaborn</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:code-2" width="24" class="text-brand"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Programming & SQL</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Writing complex queries, data transformations, and analytical scripts for business insights.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL Server</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">NumPy</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:table-2" width="24" class="text-brand"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Advanced Excel</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Master of pivot tables, VLOOKUP, Power Query, macros, and complex formula-based analysis.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Pivot Tables</span>
+                            <span class="skill-tag">Power Query</span>
+                            <span class="skill-tag">DAX</span>
+                            <span class="skill-tag">Macros</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:brain" width="24" class="text-brand"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Predictive Analytics</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Applying statistical methods and machine learning concepts for trend forecasting.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Regression</span>
+                            <span class="skill-tag">Forecasting</span>
+                            <span class="skill-tag">Statistical Analysis</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:clean" width="24" class="text-brand"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Data Cleaning</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Transforming messy raw data into clean, structured datasets ready for analysis.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Data Wrangling</span>
+                            <span class="skill-tag">ETL</span>
+                            <span class="skill-tag">Quality Control</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:layout-dashboard" width="24" class="text-brand"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">DAX & Data Modelling</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Creating calculated measures, building star schemas, and optimizing data models.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">DAX Formulas</span>
+                            <span class="skill-tag">Star Schema</span>
+                            <span class="skill-tag">Relationships</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Content Creator -->
+            <div id="tab-content" class="tab-content hidden space-y-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:pen-tool" width="24" class="text-accent"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Script Writing</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Crafting compelling video scripts with hooks, storytelling arcs, and strong CTAs.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-accent">YouTube Scripts</span>
+                            <span class="skill-tag skill-tag-accent">Reels Scripts</span>
+                            <span class="skill-tag skill-tag-accent">Storyboards</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:film" width="24" class="text-accent"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Video Editing</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Professional editing with pacing, transitions, text overlays, and sound design.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-accent">Premiere Pro</span>
+                            <span class="skill-tag skill-tag-accent">DaVinci Resolve</span>
+                            <span class="skill-tag skill-tag-accent">CapCut</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:smartphone" width="24" class="text-accent"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Short-Form Content</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Creating viral-worthy Reels, Shorts, and TikToks optimized for retention.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-accent">Instagram Reels</span>
+                            <span class="skill-tag skill-tag-accent">YouTube Shorts</span>
+                            <span class="skill-tag skill-tag-accent">TikTok</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:search" width="24" class="text-accent"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">SEO & Strategy</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Research-driven content strategy with keyword optimization and trend analysis.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-accent">YouTube SEO</span>
+                            <span class="skill-tag skill-tag-accent">Keyword Research</span>
+                            <span class="skill-tag skill-tag-accent">Trend Analysis</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:megaphone" width="24" class="text-accent"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Social Media Mgmt</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Managing content calendars, scheduling, engagement, and community building.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-accent">Content Calendar</span>
+                            <span class="skill-tag skill-tag-accent">Scheduling</span>
+                            <span class="skill-tag skill-tag-accent">Analytics</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-accent/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:file-text" width="24" class="text-accent"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Copywriting</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Writing persuasive captions, descriptions, hooks, and ad copy that converts.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-accent">Captions</span>
+                            <span class="skill-tag skill-tag-accent">Ad Copy</span>
+                            <span class="skill-tag skill-tag-accent">Email Copy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: AI Content -->
+            <div id="tab-ai" class="tab-content hidden space-y-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:message-square" width="24" class="text-green-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">ChatGPT & LLMs</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Mastering prompt engineering for content generation, ideation, and workflow automation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-green">ChatGPT</span>
+                            <span class="skill-tag skill-tag-green">Claude</span>
+                            <span class="skill-tag skill-tag-green">Gemini</span>
+                            <span class="skill-tag skill-tag-green">Prompt Engineering</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:palette" width="24" class="text-green-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">AI Image Generation</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Creating stunning visuals, thumbnails, and artwork with AI image tools.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-green">Midjourney</span>
+                            <span class="skill-tag skill-tag-green">DALL-E 3</span>
+                            <span class="skill-tag skill-tag-green">Leonardo AI</span>
+                            <span class="skill-tag skill-tag-green">Stable Diffusion</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:clapperboard" width="24" class="text-green-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">AI Video Tools</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Producing and enhancing videos with AI-powered editing and generation platforms.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-green">Runway ML</span>
+                            <span class="skill-tag skill-tag-green">Pika</span>
+                            <span class="skill-tag skill-tag-green">HeyGen</span>
+                            <span class="skill-tag skill-tag-green">Synthesia</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:mic" width="24" class="text-green-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">AI Audio & Voice</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Generating voiceovers, music, and sound effects with AI audio platforms.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-green">ElevenLabs</span>
+                            <span class="skill-tag skill-tag-green">Suno AI</span>
+                            <span class="skill-tag skill-tag-green">Murf AI</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:workflow" width="24" class="text-green-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">AI Workflow Automation</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Building automated content pipelines combining multiple AI tools for efficiency.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-green">Zapier</span>
+                            <span class="skill-tag skill-tag-green">Make.com</span>
+                            <span class="skill-tag skill-tag-green">Custom Pipelines</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:wand-2" width="24" class="text-green-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">AI Content Strategy</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Leveraging AI for audience research, content ideation, and performance optimization.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-green">Audience Insights</span>
+                            <span class="skill-tag skill-tag-green">Content Ideation</span>
+                            <span class="skill-tag skill-tag-green">A/B Testing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab Content: Thumbnail Design -->
+            <div id="tab-thumbnail" class="tab-content hidden space-y-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:mouse-pointer-click" width="24" class="text-amber-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">CTR Optimization</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Designing thumbnails that maximize click-through rates using psychology and data.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-amber">A/B Testing</span>
+                            <span class="skill-tag skill-tag-amber">Heatmap Analysis</span>
+                            <span class="skill-tag skill-tag-amber">CTR Metrics</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:paintbrush" width="24" class="text-amber-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Design Tools</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Proficient in industry-standard design tools for pixel-perfect thumbnails.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-amber">Canva Pro</span>
+                            <span class="skill-tag skill-tag-amber">Photoshop</span>
+                            <span class="skill-tag skill-tag-amber">Figma</span>
+                            <span class="skill-tag skill-tag-amber">Illustrator</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:droplets" width="24" class="text-amber-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Color Theory</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Using contrast, complementary colors, and brightness to grab attention in feeds.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-amber">Color Psychology</span>
+                            <span class="skill-tag skill-tag-amber">Contrast</span>
+                            <span class="skill-tag skill-tag-amber">Palette Design</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:type" width="24" class="text-amber-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Typography</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Bold, readable text layouts that communicate the video's value in under 2 seconds.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-amber">Font Pairing</span>
+                            <span class="skill-tag skill-tag-amber">Text Hierarchy</span>
+                            <span class="skill-tag skill-tag-amber">3D Text Effects</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:smile" width="24" class="text-amber-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Face & Emotion Design</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Incorporating expressive faces and emotions to create instant human connection.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-amber">Face Cutouts</span>
+                            <span class="skill-tag skill-tag-amber">Expression Design</span>
+                            <span class="skill-tag skill-tag-amber">Reaction Shots</span>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-8 transition-all duration-300 hover:-translate-y-2">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 flex items-center justify-center mb-5">
+                            <iconify-icon icon="lucide:trending-up" width="24" class="text-amber-400"></iconify-icon>
+                        </div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-3">Trend Analysis</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed mb-4">Staying ahead of thumbnail trends across niches to maintain competitive edge.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag skill-tag-amber">Niche Research</span>
+                            <span class="skill-tag skill-tag-amber">Competitor Analysis</span>
+                            <span class="skill-tag skill-tag-amber">Trend Forecasting</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thumbnail Showcase -->
+                <div class="mt-12 scroll-reveal">
+                    <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-6 text-center">
+                        <iconify-icon icon="lucide:image" width="20" class="text-amber-400 mr-2"></iconify-icon>
+                        Thumbnail Showcase
+                    </h3>
+                    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="thumbnail-showcase group cursor-pointer">
+                            <img src="https://picsum.photos/seed/thumb-data/400/225.jpg" alt="Data Thumbnail" class="project-img w-full h-40 object-cover">
+                            <div class="absolute bottom-3 left-3 z-10">
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/80 text-white px-2 py-1 rounded">Data Analytics</span>
+                            </div>
+                        </div>
+                        <div class="thumbnail-showcase group cursor-pointer">
+                            <img src="https://picsum.photos/seed/thumb-ai/400/225.jpg" alt="AI Thumbnail" class="project-img w-full h-40 object-cover">
+                            <div class="absolute bottom-3 left-3 z-10">
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-green-500/80 text-white px-2 py-1 rounded">AI Tools</span>
+                            </div>
+                        </div>
+                        <div class="thumbnail-showcase group cursor-pointer">
+                            <img src="https://picsum.photos/seed/thumb-tech/400/225.jpg" alt="Tech Thumbnail" class="project-img w-full h-40 object-cover">
+                            <div class="absolute bottom-3 left-3 z-10">
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-accent/80 text-white px-2 py-1 rounded">Tech Review</span>
+                            </div>
+                        </div>
+                        <div class="thumbnail-showcase group cursor-pointer">
+                            <img src="https://picsum.photos/seed-thumb-vlog/400/225.jpg" alt="Vlog Thumbnail" class="project-img w-full h-40 object-cover">
+                            <div class="absolute bottom-3 left-3 z-10">
+                                <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-500/80 text-white px-2 py-1 rounded">Vlog</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Soft Skills Bar -->
+            <div class="scroll-reveal mt-16 glass-card rounded-2xl p-8 lg:p-10">
+                <h3 class="font-display font-600 text-lg uppercase tracking-tight mb-6 text-center">Soft Skills</h3>
+                <div class="flex flex-wrap justify-center gap-3">
+                    <span class="skill-tag">Project Coordination</span>
+                    <span class="skill-tag">Client Communication</span>
+                    <span class="skill-tag">Stakeholder Management</span>
+                    <span class="skill-tag skill-tag-accent">Creative Thinking</span>
+                    <span class="skill-tag">Team Collaboration</span>
+                    <span class="skill-tag">Attention to Detail</span>
+                    <span class="skill-tag">Report Writing</span>
+                    <span class="skill-tag skill-tag-green">Adaptability</span>
+                    <span class="skill-tag skill-tag-accent">Visual Storytelling</span>
+                    <span class="skill-tag skill-tag-green">Continuous Learning</span>
+                    <span class="skill-tag skill-tag-amber">Trend Awareness</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="py-16 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="scroll-reveal grid grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <p class="font-display font-700 text-4xl lg:text-5xl text-gradient" data-count="99">0%</p>
+                    <p class="text-white/40 text-sm mt-2">Data Accuracy Rate</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display font-700 text-4xl lg:text-5xl text-gradient-accent" data-count="6">0+</p>
+                    <p class="text-white/40 text-sm mt-2">Dashboards Delivered</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display font-700 text-4xl lg:text-5xl text-green-400" data-count="15">0+</p>
+                    <p class="text-white/40 text-sm mt-2">AI Tools Mastered</p>
+                </div>
+                <div class="text-center">
+                    <p class="font-display font-700 text-4xl lg:text-5xl text-amber-400" data-count="50">0+</p>
+                    <p class="text-white/40 text-sm mt-2">Thumbnails Designed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="relative py-24 lg:py-32">
+        <div class="blob-bg w-96 h-96 bg-accent bottom-0 left-0 animate-blob" style="animation-delay:3s"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand">My Work</span>
+                <h2 class="font-display font-700 text-4xl lg:text-6xl tracking-tighter uppercase mt-4">
+                    Featured <span class="text-gradient-mixed">Projects</span>
+                </h2>
+                <p class="text-white/40 font-light mt-4 max-w-2xl mx-auto">From interactive dashboards to AI-generated content — here's what I've built.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="scroll-reveal project-card glass-card rounded-3xl overflow-hidden group">
+                    <div class="overflow-hidden">
+                        <img src="https://picsum.photos/seed/credit-card-dash/600/400.jpg" alt="Credit Card Dashboard" class="project-img w-full h-56 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/20 text-brand px-3 py-1 rounded-full">Power BI</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/20 text-brand px-3 py-1 rounded-full">SQL</span>
+                        </div>
+                        <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-2">Credit Card Financial Dashboard</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed">Interactive real-time dashboard with KPIs like CAC and Average Transaction Value for financial trend monitoring.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="scroll-reveal project-card glass-card rounded-3xl overflow-hidden group" style="transition-delay:0.1s">
+                    <div class="overflow-hidden">
+                        <img src="https://picsum.photos/seed/hr-analytics-dash/600/400.jpg" alt="HR Dashboard" class="project-img w-full h-56 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/20 text-brand px-3 py-1 rounded-full">Power BI</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/20 text-brand px-3 py-1 rounded-full">DAX</span>
+                        </div>
+                        <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-2">HR Analytics Dashboard</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed">Comprehensive workforce analytics with complex DAX measures for attrition rate and average tenure analysis.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="scroll-reveal project-card glass-card rounded-3xl overflow-hidden group" style="transition-delay:0.2s">
+                    <div class="overflow-hidden">
+                        <img src="https://picsum.photos/seed/ecommerce-ship/600/400.jpg" alt="E-Commerce Dashboard" class="project-img w-full h-56 object-cover">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/20 text-brand px-3 py-1 rounded-full">Python</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/20 text-brand px-3 py-1 rounded-full">SQL</span>
+                        </div>
+                        <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-2">E-Commerce Shipment Dashboard</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed">Logistics tracking with Python-powered data cleaning and supply chain visibility visualizations.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 - Content -->
+                <div class="scroll-reveal project-card glass-card rounded-3xl overflow-hidden group">
+                    <div class="overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/ai-content-series/600/400.jpg" alt="AI Content Series" class="project-img w-full h-56 object-cover">
+                        <div class="absolute top-3 right-3 bg-green-500/80 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">AI Powered</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-green-500/20 text-green-400 px-3 py-1 rounded-full">ChatGPT</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-accent/20 text-accent px-3 py-1 rounded-full">Content</span>
+                        </div>
+                        <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-2">AI Content Series</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed">End-to-end AI-powered content pipeline: from script generation to video production and thumbnail design.</p>
+                    </div>
+                </div>
+
+                <!-- Project 5 - Thumbnail -->
+                <div class="scroll-reveal project-card glass-card rounded-3xl overflow-hidden group" style="transition-delay:0.1s">
+                    <div class="overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/youtube-thumbnails/600/400.jpg" alt="Thumbnail Portfolio" class="project-img w-full h-56 object-cover">
+                        <div class="absolute top-3 right-3 bg-amber-500/80 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Design</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full">Canva</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full">Photoshop</span>
+                        </div>
+                        <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-2">YouTube Thumbnail Portfolio</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed">High-CTR thumbnail designs with A/B testing results, color psychology, and trend-driven aesthetics.</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 - Data Meets Creative -->
+                <div class="scroll-reveal project-card glass-card rounded-3xl overflow-hidden group" style="transition-delay:0.2s">
+                    <div class="overflow-hidden relative">
+                        <img src="https://picsum.photos/seed/data-storytelling/600/400.jpg" alt="Data Storytelling" class="project-img w-full h-56 object-cover">
+                        <div class="absolute top-3 right-3 bg-brand/80 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full">Hybrid</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-2 mb-3">
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-brand/20 text-brand px-3 py-1 rounded-full">Data</span>
+                            <span class="text-[10px] font-bold uppercase tracking-wider bg-accent/20 text-accent px-3 py-1 rounded-full">Creative</span>
+                        </div>
+                        <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-2">Data Storytelling Videos</h3>
+                        <p class="text-white/40 text-sm font-light leading-relaxed">Transforming dry data insights into engaging video content with visual storytelling and motion graphics.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="relative py-24 lg:py-32">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand">Career Path</span>
+                <h2 class="font-display font-700 text-4xl lg:text-6xl tracking-tighter uppercase mt-4">
+                    Work <span class="text-gradient">Experience</span>
+                </h2>
+            </div>
+
+            <div class="scroll-reveal max-w-3xl mx-auto">
+                <div class="relative">
+                    <div class="timeline-line"></div>
+
+                    <!-- Experience Item -->
+                    <div class="relative pl-16 pb-12">
+                        <div class="absolute left-0 top-0 w-12 h-12 rounded-xl bg-brand/20 border border-brand/40 flex items-center justify-center">
+                            <iconify-icon icon="lucide:briefcase" width="20" class="text-brand"></iconify-icon>
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-brand">Dec 2025 – Present</span>
+                                <span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                                <span class="text-xs text-white/40">Virar, Maharashtra</span>
+                            </div>
+                            <h3 class="font-display font-600 text-xl uppercase tracking-tight">Project Coordinator & Data Management Executive</h3>
+                            <p class="text-accent text-sm font-medium mt-1">Nesteye Insight's Private Limited</p>
+                            <ul class="mt-4 space-y-2">
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Execute high-volume data entry maintaining 99%+ accuracy rate across Excel and CRM systems
+                                </li>
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Spearhead project coordination via outbound/inbound stakeholder communications
+                                </li>
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Prepare daily, weekly, and monthly performance reports with actionable insights
+                                </li>
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Collaborate with field teams and senior management to resolve operational bottlenecks
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Content Creator Role -->
+                    <div class="relative pl-16 pb-12">
+                        <div class="absolute left-0 top-0 w-12 h-12 rounded-xl bg-accent/20 border border-accent/40 flex items-center justify-center">
+                            <iconify-icon icon="lucide:video" width="20" class="text-accent"></iconify-icon>
+                        </div>
+                        <div class="glass-card rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1">
+                            <div class="flex flex-wrap items-center gap-3 mb-3">
+                                <span class="text-xs font-bold uppercase tracking-wider text-accent">Freelance</span>
+                                <span class="w-1 h-1 bg-white/30 rounded-full"></span>
+                                <span class="text-xs text-white/40">Ongoing</span>
+                            </div>
+                            <h3 class="font-display font-600 text-xl uppercase tracking-tight">Content Creator & Thumbnail Designer</h3>
+                            <p class="text-green-400 text-sm font-medium mt-1">Self-Employed</p>
+                            <ul class="mt-4 space-y-2">
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Create data-driven YouTube videos with AI-powered scripting and editing workflows
+                                </li>
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Design high-CTR thumbnails using Canva, Photoshop, and AI image generators
+                                </li>
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Manage social media content calendars with SEO-optimized posting strategies
+                                </li>
+                                <li class="flex items-start gap-2 text-white/40 text-sm font-light">
+                                    <iconify-icon icon="lucide:check-circle-2" width="16" class="text-green-400 mt-0.5 shrink-0"></iconify-icon>
+                                    Leverage 15+ AI tools for end-to-end content production pipelines
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="relative py-24 lg:py-32 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand">Learning Journey</span>
+                <h2 class="font-display font-700 text-4xl lg:text-6xl tracking-tighter uppercase mt-4">
+                    <span class="text-gradient">Education</span>
+                </h2>
+            </div>
+
+            <div class="scroll-reveal max-w-3xl mx-auto grid gap-6">
+                <div class="glass-card rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand/20 flex items-center justify-center shrink-0">
+                        <iconify-icon icon="lucide:graduation-cap" width="24" class="text-brand"></iconify-icon>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight">Diploma in Data Analytics</h3>
+                        <p class="text-white/50 text-sm">I-Tech Computer Education, Virar</p>
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand mt-1 inline-block">2024</span>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center shrink-0">
+                        <iconify-icon icon="lucide:book-open" width="24" class="text-brand/70"></iconify-icon>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight">Higher Secondary Certificate (HSC)</h3>
+                        <p class="text-white/50 text-sm">Viva College, Virar</p>
+                        <span class="text-xs font-bold uppercase tracking-wider text-white/30 mt-1 inline-block">2024</span>
+                    </div>
+                </div>
+                <div class="glass-card rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center gap-4 transition-all duration-300 hover:-translate-y-1">
+                    <div class="w-14 h-14 rounded-xl bg-brand/10 flex items-center justify-center shrink-0">
+                        <iconify-icon icon="lucide:school" width="24" class="text-brand/50"></iconify-icon>
+                    </div>
+                    <div>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight">Secondary School Certificate (SSC)</h3>
+                        <p class="text-white/50 text-sm">St. John's English High School, Virar</p>
+                        <span class="text-xs font-bold uppercase tracking-wider text-white/30 mt-1 inline-block">2022</span>
+                    </div>
+                </div>
+
+                <!-- Continuous Learning -->
+                <div class="glass-card rounded-2xl p-6 border-brand/20 mt-4">
+                    <div class="flex items-center gap-3 mb-4">
+                        <iconify-icon icon="lucide:rocket" width="20" class="text-brand"></iconify-icon>
+                        <h3 class="font-display font-600 text-lg uppercase tracking-tight">Self-Learning & Certifications</h3>
+                    </div>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="skill-tag skill-tag-green">AI Content Creation</span>
+                        <span class="skill-tag skill-tag-green">Prompt Engineering</span>
+                        <span class="skill-tag skill-tag-accent">Video Editing</span>
+                        <span class="skill-tag skill-tag-amber">Thumbnail Design</span>
+                        <span class="skill-tag">Advanced DAX</span>
+                        <span class="skill-tag">Python for Data</span>
+                        <span class="skill-tag skill-tag-green">Midjourney Mastery</span>
+                        <span class="skill-tag skill-tag-accent">YouTube Growth</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section class="py-24 lg:py-32 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand">Tech Stack</span>
+                <h2 class="font-display font-700 text-4xl lg:text-6xl tracking-tighter uppercase mt-4">
+                    Tools I <span class="text-gradient-mixed">Use</span>
+                </h2>
+            </div>
+
+            <div class="scroll-reveal grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(84,35,231,0.2)]">
+                    <iconify-icon icon="lucide:database" width="28" class="text-yellow-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Power BI</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(84,35,231,0.2)]">
+                    <iconify-icon icon="lucide:code-2" width="28" class="text-blue-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Python</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(84,35,231,0.2)]">
+                    <iconify-icon icon="lucide:server" width="28" class="text-red-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">SQL Server</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(84,35,231,0.2)]">
+                    <iconify-icon icon="lucide:table-2" width="28" class="text-green-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Excel</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(255,51,102,0.2)]">
+                    <iconify-icon icon="lucide:film" width="28" class="text-purple-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Premiere Pro</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(255,51,102,0.2)]">
+                    <iconify-icon icon="lucide:sparkles" width="28" class="text-green-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">ChatGPT</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                    <iconify-icon icon="lucide:palette" width="28" class="text-cyan-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Canva</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+                    <iconify-icon icon="lucide:image" width="28" class="text-blue-300"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Photoshop</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(255,51,102,0.2)]">
+                    <iconify-icon icon="lucide:figma" width="28" class="text-pink-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Figma</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    <iconify-icon icon="lucide:brain" width="28" class="text-violet-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Midjourney</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    <iconify-icon icon="lucide:clapperboard" width="28" class="text-emerald-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Runway ML</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    <iconify-icon icon="lucide:mic" width="28" class="text-orange-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">ElevenLabs</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(84,35,231,0.2)]">
+                    <iconify-icon icon="lucide:bar-chart-3" width="28" class="text-blue-500"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Tableau</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(255,51,102,0.2)]">
+                    <iconify-icon icon="lucide:scissors" width="28" class="text-teal-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">CapCut</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(84,35,231,0.2)]">
+                    <iconify-icon icon="lucide:file-code-2" width="28" class="text-orange-300"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">HTML/CSS</span>
+                </div>
+                <div class="glass-card rounded-xl p-4 flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)]">
+                    <iconify-icon icon="lucide:workflow" width="28" class="text-amber-400"></iconify-icon>
+                    <span class="text-[11px] text-white/50 font-medium">Make.com</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="relative py-24 lg:py-32">
+        <div class="blob-bg w-96 h-96 bg-brand top-20 right-0 animate-blob" style="animation-delay:2s"></div>
+        <div class="blob-bg w-72 h-72 bg-accent bottom-0 left-20 animate-blob" style="animation-delay:4s"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative">
+            <div class="scroll-reveal text-center mb-16">
+                <span class="text-xs font-bold uppercase tracking-widest text-brand">Let's Connect</span>
+                <h2 class="font-display font-700 text-4xl lg:text-6xl tracking-tighter uppercase mt-4">
+                    Get In <span class="text-gradient">Touch</span>
+                </h2>
+                <p class="text-white/40 font-light mt-4 max-w-xl mx-auto">I'm immediately available for full-time or remote opportunities. Let's build something amazing together.</p>
+            </div>
+
+            <div class="scroll-reveal grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div class="space-y-6">
+                    <div class="glass-card rounded-2xl p-6 flex items-center gap-4 transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center shrink-0">
+                            <iconify-icon icon="lucide:mail" width="20" class="text-brand"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-xs text-white/40 uppercase tracking-wider font-bold">Email</p>
+                            <a href="mailto:prakritivish09@gmail.com" class="text-white hover:text-brand transition-colors text-sm">prakritivish09@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 flex items-center gap-4 transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center shrink-0">
+                            <iconify-icon icon="lucide:phone" width="20" class="text-brand"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-xs text-white/40 uppercase tracking-wider font-bold">Phone</p>
+                            <a href="tel:+918530989791" class="text-white hover:text-brand transition-colors text-sm">+91 8530989791</a>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 flex items-center gap-4 transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-brand/20 flex items-center justify-center shrink-0">
+                            <iconify-icon icon="lucide:map-pin" width="20" class="text-brand"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-xs text-white/40 uppercase tracking-wider font-bold">Location</p>
+                            <p class="text-white text-sm">Virar, Maharashtra, India</p>
+                        </div>
+                    </div>
+                    <div class="glass-card rounded-2xl p-6 flex items-center gap-4 transition-all duration-300 hover:-translate-y-1">
+                        <div class="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center shrink-0">
+                            <iconify-icon icon="lucide:clock" width="20" class="text-green-400"></iconify-icon>
+                        </div>
+                        <div>
+                            <p class="text-xs text-white/40 uppercase tracking-wider font-bold">Availability</p>
+                            <p class="text-green-400 text-sm font-medium">Immediately Available</p>
+                        </div>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="glass-card rounded-2xl p-6">
+                        <p class="text-xs text-white/40 uppercase tracking-wider font-bold mb-3">Interests</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="skill-tag">Reading</span>
+                            <span class="skill-tag skill-tag-green">Learning New Tech</span>
+                            <span class="skill-tag skill-tag-accent">AI Exploration</span>
+                            <span class="skill-tag">Coding</span>
+                            <span class="skill-tag skill-tag-amber">Content Creation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="glass-card rounded-3xl p-8 lg:p-10">
+                    <h3 class="font-display font-600 text-xl uppercase tracking-tight mb-6">Send a Message</h3>
+                    <form id="contactForm" class="space-y-5" onsubmit="handleSubmit(event)">
+                        <div>
+                            <label class="text-xs text-white/40 uppercase tracking-wider font-bold block mb-2">Name</label>
+                            <input type="text" required placeholder="Your full name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/30 transition-all">
+                        </div>
+                        <div>
+                            <label class="text-xs text-white/40 uppercase tracking-wider font-bold block mb-2">Email</label>
+                            <input type="email" required placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/30 transition-all">
+                        </div>
+                        <div>
+                            <label class="text-xs text-white/40 uppercase tracking-wider font-bold block mb-2">Subject</label>
+                            <select required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white/60 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/30 transition-all appearance-none">
+                                <option value="" class="bg-dark">Select a topic</option>
+                                <option value="data" class="bg-dark">Data Analytics Project</option>
+                                <option value="content" class="bg-dark">Content Creation</option>
+                                <option value="thumbnail" class="bg-dark">Thumbnail Design</option>
+                                <option value="ai" class="bg-dark">AI Content Strategy</option>
+                                <option value="job" class="bg-dark">Job Opportunity</option>
+                                <option value="other" class="bg-dark">Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-white/40 uppercase tracking-wider font-bold block mb-2">Message</label>
+                            <textarea required rows="4" placeholder="Tell me about your project..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:outline-none focus:border-brand/50 focus:ring-1 focus:ring-brand/30 transition-all resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brand hover:bg-brand/80 text-white text-xs font-bold uppercase tracking-wider py-4 rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(84,35,231,0.4)] flex items-center justify-center gap-2">
+                            Send Message
+                            <iconify-icon icon="lucide:send" width="16"></iconify-icon>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <span class="font-display font-700 text-xl tracking-tight">
+                        <span class="text-gradient">PV</span><span class="text-white/60">.</span>
+                    </span>
+                    <span class="text-white/20 text-sm">|</span>
+                    <span class="text-white/30 text-sm">Data Analyst · Content Creator · AI Enthusiast</span>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all duration-300">
+                        <iconify-icon icon="lucide:linkedin" width="14"></iconify-icon>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all duration-300">
+                        <iconify-icon icon="lucide:github" width="14"></iconify-icon>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all duration-300">
+                        <iconify-icon icon="lucide:youtube" width="14"></iconify-icon>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:bg-white/10 transition-all duration-300">
+                        <iconify-icon icon="lucide:instagram" width="14"></iconify-icon>
+                    </a>
+                </div>
+                <p class="text-white/20 text-xs">© 2025 Prakriti Vishwakarma. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        let menuOpen = false;
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuBtn.innerHTML = menuOpen
+                ? '<iconify-icon icon="lucide:x" width="24"></iconify-icon>'
+                : '<iconify-icon icon="lucide:menu" width="24"></iconify-icon>';
+        });
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuOpen = false;
+                mobileMenuBtn.innerHTML = '<iconify-icon icon="lucide:menu" width="24"></iconify-icon>';
+            });
+        });
+
+        // Tab Switching
+        function switchTab(tab) {
+            // Hide all tab content
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            // Remove active from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            // Show selected tab
+            document.getElementById('tab-' + tab).classList.remove('hidden');
+            // Activate button
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+
+            // Re-trigger scroll reveal for newly visible items
+            document.getElementById('tab-' + tab).querySelectorAll('.glass-card').forEach((card, i) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    card.style.transition = 'all 0.5s cubic-bezier(0.16,1,0.3,1)';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, i * 80);
+            });
+        }
+
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // Counter Animation
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const el = entry.target;
+                    const target = parseInt(el.getAttribute('data-count'));
+                    const suffix = el.textContent.replace(/[0-9]/g, '');
+                    let current = 0;
+                    const increment = target / 40;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            current = target;
+                            clearInterval(timer);
+                        }
+                        el.textContent = Math.round(current) + suffix;
+                    }, 30);
+                    counterObserver.unobserve(el);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        document.querySelectorAll('[data-count]').forEach(el => counterObserver.observe(el));
+
+        // Toast Notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = 'toast backdrop-blur-xl';
+            if (type === 'success') {
+                toast.classList.add('bg-green-500/20', 'border', 'border-green-500/40', 'text-green-300');
+            } else {
+                toast.classList.add('bg-red-500/20', 'border', 'border-red-500/40', 'text-red-300');
+            }
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        // Form Submit
+        function handleSubmit(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<iconify-icon icon="lucide:loader-2" width="16" class="animate-spin"></iconify-icon> Sending...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                e.target.reset();
+                showToast('✓ Message sent successfully! I\'ll get back to you soon.');
+            }, 1500);
+        }
+
+        // Navbar background on scroll
+        const nav = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                nav.style.borderBottomColor = 'rgba(255,255,255,0.08)';
+                nav.style.background = 'rgba(15,23,42,0.9)';
+            } else {
+                nav.style.borderBottomColor = 'rgba(255,255,255,0.05)';
+                nav.style.background = 'rgba(15,23,42,0.7)';
+            }
+        });
+
+        // Active nav link highlight
+        const sections = document.querySelectorAll('section[id]');
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href') === '#' + current) {
+                    link.style.color = '#fff';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
